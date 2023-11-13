@@ -1,0 +1,33 @@
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("https://cdn.hipwallpaper.com/i/5/56/nwTxJj.jpg");
+  background-repeat: repeat;
+  color: white;
+}
+
+.topNavbar {
+  background-color: black;
+  color: white;
+  padding: 1rem 0;
+  opacity: 0.89;
+}
+
+.fa-search {
+  font-size: 1.5rem;
+}
+
+input {
+  background-color: transparent;
+  outline: none;
+  color: white;
+  border-radius: 0.7rem;
+  padding: 0 1rem;
+  all: unset;
+}
+.topNavbar p {
+  margin: 0;
+  margin-bottom: 2px;
+}
+.topNavbar h1 {
+  margin-bottom: 0;
+}

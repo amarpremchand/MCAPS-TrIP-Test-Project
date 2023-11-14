@@ -1,10 +1,10 @@
 import React from "react";
-import Movie from "./Movie";
+import Movie from "../Movie/Movie";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
-import IMovieProps from "./interfaces/IMovieProps";
-import IMoviesList from "./interfaces/IMoviesList";
+import IMovieProps from "../../interfaces/IMovieProps";
+import IMoviesList from "../../interfaces/IMoviesList";
 
 function MoviesList({ title, page, setPage }: IMoviesList) {
   const [filteredMovies, setFilteredMovies] = useState<IMovieProps[]>([]);
@@ -35,6 +35,7 @@ function MoviesList({ title, page, setPage }: IMoviesList) {
       next={() => setPage(page + 1)}
       hasMore={true}
       loader={null}
+      data-testid="mock-movies-list"
     >
       <div className="container">
         <div className="row mt-3">

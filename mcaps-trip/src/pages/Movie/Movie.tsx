@@ -3,8 +3,8 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import "./Movie.css";
-import MovieHeader from "../../components/MovieHeader/MovieHeader";
 import IMovieProps from "../../interfaces/IMovieProps";
+import Header from "../../components/Header/Header";
 
 function Movie() {
   const [movie, setMovie] = useState<IMovieProps | null>(null);
@@ -30,7 +30,7 @@ function Movie() {
 
   return (
     <>
-      <MovieHeader />
+      <Header />
 
       {movie ? (
         <div className="container mt-5">

@@ -1,14 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import IHeaderProps from "./interfaces/IHeaderProps";
 import "./Header.css";
 
-interface IHeaderProps {
-  title: string;
-  setTitle: (title: string) => void;
-  setPage: (page: number) => void;
-}
 
-function Header({ title, setTitle, setPage }: IHeaderProps) {
+
+function Header({ title, setTitle, setPage, withSearchField }: IHeaderProps) {
   return (
     <>
       <div className="topNavbar sticky-top">
@@ -25,20 +22,25 @@ function Header({ title, setTitle, setPage }: IHeaderProps) {
               </Link>
             </motion.div>
           </div>
+          {withSearchField ? (
           <div className="d-flex align-items-center">
             <input
               id="title"
               value={title}
               type="text"
               className="me-2"
-              placeholder="Busqueda"
+              placeholder="Search..."
               onChange={(ev) => {
-                setTitle(ev.target.value);
-                setPage(1);
+                if (setTitle) {
+                  setTitle(ev.target.value);
+                }
+                if (setPage) {
+                  setPage(1);
+                }
               }}
             />
             <i className="fas fa-search me-5"></i>
-          </div>
+          </div>): null}
         </div>
       </div>
     </>

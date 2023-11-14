@@ -8,7 +8,7 @@ function Home() {
   const [page, setPage] = useState(1);
   return (
     <div>
-      <Header title={title} setTitle={setTitle} setPage={setPage} />
+      <Header title={title} setTitle={setTitle} setPage={setPage} withSearchField={true}/>
       <MoviesList title={title} setPage={setPage} page={page} />
     </div>
   );

@@ -36,7 +36,6 @@ function App() {
             </AuthenticatedTemplate>
           </Route>
           <Route path="/login" component={Login} />
-          {/* Redirect to /login if no other route matches */}
           <Route path="*">
             <Redirect to="/login" />
           </Route>

@@ -27,6 +27,24 @@ function MoviesList({ title, page, setPage }: IMoviesList) {
       }
     };
     fetchData();
+  }, [title, page]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const endpoint = title ? `/search-movies` : `/discover-movies`;
+      const response = await axios.get(endpoint, {
+        params: {
+          title: title,
+          page: page,
+        },
+      });
+      if (page > 1) {
+        setFilteredMovies([...filteredMovies, ...response.data.results]);
+      } else {
+        setFilteredMovies(response.data.results);
+      }
+    };
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, page]);
   return (

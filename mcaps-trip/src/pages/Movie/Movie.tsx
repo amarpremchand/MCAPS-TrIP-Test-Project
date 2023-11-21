@@ -10,7 +10,7 @@ function Movie() {
   const [movie, setMovie] = useState<IMovieProps | null>(null);
   const [genre, setGenre] = useState([]);
   const { id } = useParams<{ id: string }>();
-  const apiKey = "69cae2f888f4adf3360e460eb4dbf272";
+  const apiKey = process.env.REACT_APP_API_KEY;
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`;
 
   useEffect(() => {

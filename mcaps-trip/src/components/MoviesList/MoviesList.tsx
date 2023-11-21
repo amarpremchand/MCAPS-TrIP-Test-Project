@@ -10,34 +10,16 @@ function MoviesList({ title, page, setPage }: IMoviesList) {
   const [filteredMovies, setFilteredMovies] = useState<IMovieProps[]>([]);
 
   useEffect(() => {
-    const apiKey = process.env.REACT_APP_API_KEY;
-    const url = title
-      ? `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&sort_by=popularity.desc&query=${title}&page=${page}`
-      : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`;
-
     const fetchData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: url,
-      });
-      if (page > 1) {
-        setFilteredMovies([...filteredMovies, ...response.data.results]);
-      } else {
-        setFilteredMovies(response.data.results);
+      const endpoint = title ? `/search-movies` : `/movies`;
+      let params: { page: number; title?: string } = { page: page };
+
+      if (title && endpoint === "/search-movies") {
+        params.title = title;
       }
-    };
-    fetchData();
-  }, [title, page]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const endpoint = title ? `/search-movies` : `/discover-movies`;
-      const response = await axios.get(endpoint, {
-        params: {
-          title: title,
-          page: page,
-        },
-      });
+      const response = await axios.get(endpoint, { params });
+
       if (page > 1) {
         setFilteredMovies([...filteredMovies, ...response.data.results]);
       } else {
@@ -47,6 +29,7 @@ function MoviesList({ title, page, setPage }: IMoviesList) {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, page]);
+
   return (
     <InfiniteScroll
       dataLength={filteredMovies.length}

@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
-import "../Movie.css";
-import MovieHeader from "../MovieHeader";
-import IMovieProps from "../interfaces/IMovieProps";
+import "./Movie.css";
+import IMovieProps from "../../interfaces/IMovieProps";
+import Header from "../../components/Header/Header";
 
 function Movie() {
   const [movie, setMovie] = useState<IMovieProps | null>(null);
   const [genre, setGenre] = useState([]);
   const { id } = useParams<{ id: string }>();
-  const apiKey = "69cae2f888f4adf3360e460eb4dbf272";
+  const apiKey = process.env.REACT_APP_API_KEY;
   const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`;
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function Movie() {
 
   return (
     <>
-      <MovieHeader />
+      <Header />
 
       {movie ? (
         <div className="container mt-5">
@@ -60,7 +60,7 @@ function Movie() {
               </motion.div>
               <div className="d-flex justify-content-evenly mt-4">
                 {genre.length > 0
-                  ? genre.map((x:any) => (
+                  ? genre.map((x: any) => (
                       <motion.div
                         whileHover={{ scale: 1.1 }}
                         style={{

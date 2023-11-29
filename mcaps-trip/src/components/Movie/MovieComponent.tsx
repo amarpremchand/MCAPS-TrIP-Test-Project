@@ -1,11 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import IMovie from "./interfaces/IMovie";
+import IMovie from "../../interfaces/IMovie";
 
-
-
-function Movie({movie}: IMovie) {
+function Movie({ movie }: IMovie) {
   return (
     <motion.div
       whileHover={{ scale: 1.1 }}

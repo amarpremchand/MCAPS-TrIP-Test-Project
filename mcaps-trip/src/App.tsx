@@ -1,16 +1,20 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home/Home";
-import Movie from "./pages/Movie/Movie";
+import { PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+import { msalConfig } from "./authConfig";
+import Routes from "./routing/Routes";
+
+const msalInstance = new PublicClientApplication(msalConfig);
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/movie/:id" component={Movie} />
-      </Switch>
-    </BrowserRouter>
+    <MsalProvider instance={msalInstance}>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </MsalProvider>
   );
 }
 
